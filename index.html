@@ -1,0 +1,244 @@
+{% load usuario_extras %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- Import Favicon -->
+        <link rel="shortcut icon" href="{% static 'images/consultorio.png'%}">
+
+        <!-- Import CSS Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <!-- Import CSS Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+        <!-- Importando função de carregamento -->
+        <link rel="stylesheet" href="{% static 'css/HoldOn.min.css' %}">
+
+        <!-- Import Floating Action Button -->
+        <link rel="stylesheet" href="{% static 'css/btn-floating.css' %}">
+
+        <!-- Import CSS Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/datatables.min.css' %}">
+
+        <!-- Import Pallete Colors Personalizada -->
+        <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+
+        <!-- Import CSS Personalizado -->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+        <!-- Import Classes Personalizadas -->
+        <link rel="stylesheet" href="{% static 'css/custom-class.css' %}">
+
+        <!-- Import Pallete Colors Personalizada -->
+        <link rel="stylesheet" href="{% static 'css/pallete-colors.css' %}">
+
+        <!-- Import Gallery -->
+        <link rel="stylesheet" href="{% static 'css/gallery/gallery.css' %}">
+
+        <!-- Import Gallery -->
+        <link rel="stylesheet" href="{% static 'css/gallery/fancybox.min.css' %}">
+
+        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
+
+        <!-- Import Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Nome da Página -->
+        <title>{{ Nome_Pagina }}</title>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light static-top shadow-sm bg-body rounded">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'home'%}">
+                        <img src="{% static 'images/unincare.svg'%}" height="60">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        {% if user.is_authenticated %}
+                            <ul class="navbar-nav ms-auto">
+                                {% if request.user|has_groups:"Administrador" %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" style="color: #950606;" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Administração
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light" style="padding-left: 8%;">
+                                        <li><a href="{% url 'ViewDashboardAdministrador' %}">Unidades</a></li>
+                                        <li><a href="{% url 'listar_semestres' %}">Semestres Letivo</a></li>
+                                        <li><a href="{% url 'listar_equipes' %}">Equipes</a></li>
+                                        <li><a href="{% url 'menu_relatorios_agendamentos' %}">Relatórios de Agendamentos</a></li>
+                                        <li><a href="{% url 'listar_salas_atendimento' %}">Salas de Atendimento</a></li>
+                                        <li><a href="{% url 'listar_prontuarios' %}">Prontuários</a></li>
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" style="color: #950606;" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Minha Conta
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light" style="padding-left: 8%;">
+                                        {%if QtdGroup > 1%}
+                                            <select id="EscolherPerfil">  
+                                                <option selected disabled value=""><li><a>Selecione um perfil</a></li></option>                           
+                                                {%for group in ListGroup%}
+                                                    <option value="{{group.id}}"><li><a>{{group}}</a></li></option>                      
+                                                {%endfor%}
+                                            </select>
+                                        {%endif%}
+                                        <li><a href="{% url 'change_password' %}">Alterar senha</a></li>
+                                        {% if request.user|has_groups:"Paciente" %} 
+                                        <li><a href="{% url 'listar_agendamentos_cliente' %}">Atendimentos</a></li>
+                                        <li><a href="{% url 'alterar_unidade_padrao' %}">Alterar unidade de preferência</a></li>
+                                        {%endif%}
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'logout' %}" class="nav-link" href="#" style="color: #950606;">Sair</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Importando ícones de mensagens -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </symbol>
+                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </symbol>
+                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </symbol>
+            </svg>  
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success'%}
+                        <div class="alert alert-success alert-dismissible fade show ms-5" role="alert" style="width: 50%;">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                                {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% elif message.tags == 'info'%}
+                        <div class="alert alert-info alert-dismissible fade show ms-5" role="alert" style="width: 50%;">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                                {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% elif message.tags == 'warning'%}
+                        <div class="alert alert-warning alert-dismissible fade show ms-5" role="alert" style="width: 50%;">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% elif message.tags == 'error'%}
+                        <div class="alert alert-danger alert-dismissible fade show ms-5" role="alert" style="width: 50%;">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                {{message}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            
+            {% block conteudo %}
+            {% endblock conteudo %}
+        </main>
+
+        <footer class="bg-light text-center text-lg-start ft-open">
+            <div class="text-center p-3">
+                © 2021 Copyright - UninCare
+            </div>
+        </footer>
+
+        <!-- Import JS JQuery -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        
+        <!-- Import JS Bootstrap -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <!-- Importando pacotes extras para novas funcionalidade -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        
+        <!-- Import JQuery Mask -->
+        <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+        <!-- Import DateTimePicker -->
+        <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+
+        <!-- Import tradução do DateTimePicker -->
+        <script src="{% static 'js/DataTimePicker.js' %}"></script>
+
+        <!-- Importando função de carregamento -->
+        <script src="{% static 'js/HoldOn.min.js' %}"></script>
+
+        <!-- Import JQuery DataTables -->
+        <script src="{% static 'js/jquery-datatables.min.js' %}"></script>
+
+        <!-- Import DataTables -->
+        <script src="{% static 'js/datatables.min.js' %}"></script>
+
+        <!-- Import Floating Action Button -->
+        <script src="{% static 'js/btn-floating.js' %}"></script>
+
+        <!-- Import Fancybox Gallery -->
+        <script src="{% static 'js/gallery/fancybox.min.js' %}"></script>
+
+        <!-- Importando alert "modal" -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"></script>
+
+        <!-- Inicialization Page -->
+        <script>
+            $("#EscolherPerfil").change(function() {                
+                var id_group = $("#EscolherPerfil").val();
+                var a = "{% url 'home' 1 %}".replace(/1/, id_group.toString());
+                document.location.href = a;
+            }); 
+            $(document).ready(function() { 
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+                $(window).bind('beforeunload', function() {
+                    var options = {
+                        theme: "sk-cube-grid",
+                        message: 'Por favor, aguarde...',
+                        backgroundColor: "#1847B1k",
+                        textColor: "white"
+                    };
+                    HoldOn.open(options);
+                });
+                $(window).load(function() {
+                    HoldOn.close();
+                });        
+            });
+
+            function Data(listDateTime) {
+                for(i=0; i < listDateTime.length; i++){
+                    $(listDateTime[i]).datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: 'pt-BR'
+                    });
+                    $(listDateTime[i]).attr('autocomplete', 'off');
+                }
+            }            
+        </script>
+
+        {% block script %} 
+        {% endblock %}
+    </body>
+</html>    

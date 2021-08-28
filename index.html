@@ -59,25 +59,25 @@
         <script>
             $(document).ready(function(){
                 links = [
-                    "https://source.unsplash.com/pWkk7iiCoDM/400x300",
-                    "https://source.unsplash.com/aob0ukAYfuI/400x300",
-                    "https://source.unsplash.com/EUfxH-pze7s/400x300",
-                    "https://source.unsplash.com/M185_qYH8vg/400x300",
-                    "https://source.unsplash.com/sesveuG_rNo/400x300",
-                    "https://source.unsplash.com/AvhMzHwiE_0/400x300",
-                    "https://source.unsplash.com/2gYsZUmockw/400x300",
-                    "https://source.unsplash.com/EMSDtjVHdQ8/400x300",
-                    "https://source.unsplash.com/8mUEy0ABdNE/400x300",
-                    "https://source.unsplash.com/G9Rfc1qccH4/400x300",
-                    "https://source.unsplash.com/aJeH0KcFkuc/400x300",
-                    "https://source.unsplash.com/p2TQ-3Bh3Oo/400x300",
+                    "static/images/image-0.jpg",
+                    "static/images/image-1.jpg",
+                    "static/images/image-2.jpg",
+                    "static/images/image-3.jpg",
+                    "static/images/image-4.jpg",
+                    "static/images/image-5.jpg",
+                    "static/images/image-6.jpg",
+                    "static/images/image-7.jpg",
+                    "static/images/image-8.jpg",
+                    "static/images/image-9.jpg",
+                    "static/images/image-10.jpg",
+                    "static/images/image-11.jpg",
                 ]
 
                 for(url of links){
                     $(`
                         <div class="col-lg-3 col-md-4 col-6">
                             <a href="#" class="d-block mb-4 h-100" type="button" data-bs-toggle="modal" data-bs-target="#modal-${links.indexOf(url)}">
-                                <img id="${links.indexOf(url)}" class="img-fluid img-thumbnail zoom rounded-3" src="${url}" alt="">
+                                <img id="${links.indexOf(url)}" class="img-fluid img-thumbnail zoom" src="${url}" alt="${url}-${links.indexOf(url)}">
                             </a>
                         </div>
 
@@ -96,4 +96,4 @@
             });
         </script>
     </body>
-</html>    
+</html>

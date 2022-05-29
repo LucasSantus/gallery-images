@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR">
+
+    <!-- BEGIN: HEAD -->
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <!-- Import CSS Bootstrap -->
-        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <!-- URL Project -->
+        <link rel="canonical" href="https://lucassantus.github.io/portfolio/gallery-images/"/>
 
-        <!-- Import Classes Personalizadas -->
-        <link rel="stylesheet" href="static/css/custom-class.css">
+        <!-- Description Project -->
+        <meta name="author" content="Lucas Eduardo de Oliveira Santos">
+        <meta name="description" content="Site construído para realizar a listagem de imagens.">
 
-        <!-- Import Pallete Colors Personalizada -->
-        <link rel="stylesheet" href="static/css/pallete-colors.css">
+        <!-- Import Favicon -->
+        <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
 
-        <!-- Import Styles Personalizados -->
-        <link rel="stylesheet" href="static/css/index.css">
 
-        <!-- Import Styles Personalizados -->
-        <link rel="stylesheet" href="static/css/gallery.css">
+        <!-- BEGIN: CSS -->
+            <!-- Import CSS Bootstrap -->
+            <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
 
-        <!-- Import Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <!-- Import CSS Custom -->
+            <link rel="stylesheet" href="assets/css/styles.css">
 
-        <!-- Nome da Página -->
+            <!-- Import Icons -->
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- END: CSS -->
+
+        <!-- Name Page -->
         <title>Gallery Images</title>
     </head>
+    <!-- END: HEAD -->
 
     <body>
         <main>
             <!-- Page Content -->
             <div class="container">
                 <h1 class="fw-light text-center mt-4 mb-0">Thumbnail Gallery</h1>
+
                 <hr class="mt-2 mb-5">
+
                 <!-- Estrutura das Imagens -->
                 <div id="gallery" class="row text-center text-lg-start">
                 </div>
@@ -46,31 +55,30 @@
             </div>
         </footer>
 
-        <!-- Import JS JQuery -->
-        <script src="static/js/jquery.min.js"></script>
-        
-        <!-- Import JS Bootstrap -->
-        <script src="static/js/bootstrap.min.js"></script>
+        <!-- BEGIN: SCRIPTS -->
 
+        <!-- Import JS JQuery -->
+        <script src="assets/js/jquery/jquery.min.js"></script>
+        
         <!-- Import JS Bundle Bootstrap -->
-        <script src="static/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/bootstrap/bootstrap.min.js"></script>
 
         <!-- Inicialization Page -->
         <script>
             $(document).ready(function(){
                 links = [
-                    "static/images/image-0.jpg",
-                    "static/images/image-1.jpg",
-                    "static/images/image-2.jpg",
-                    "static/images/image-3.jpg",
-                    "static/images/image-4.jpg",
-                    "static/images/image-5.jpg",
-                    "static/images/image-6.jpg",
-                    "static/images/image-7.jpg",
-                    "static/images/image-8.jpg",
-                    "static/images/image-9.jpg",
-                    "static/images/image-10.jpg",
-                    "static/images/image-11.jpg",
+                    "assets/images/image-0.jpg",
+                    "assets/images/image-1.jpg",
+                    "assets/images/image-2.jpg",
+                    "assets/images/image-3.jpg",
+                    "assets/images/image-4.jpg",
+                    "assets/images/image-5.jpg",
+                    "assets/images/image-6.jpg",
+                    "assets/images/image-7.jpg",
+                    "assets/images/image-8.jpg",
+                    "assets/images/image-9.jpg",
+                    "assets/images/image-10.jpg",
+                    "assets/images/image-11.jpg",
                 ]
 
                 for(url of links){
@@ -95,5 +103,7 @@
                 }
             });
         </script>
+
+        <!-- END: SCRIPTS -->
     </body>
 </html>

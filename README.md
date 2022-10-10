@@ -22,7 +22,6 @@ _"Criar uma Galeria de Imagens onde o mesmo tenha um design simples e belo, com 
 * [Tabela de Conteudo](#tabela-de-conteudo)
 * [Status do Projeto](#status)
 * [Por Que](#por-que)
-* [Funcionalidades](#funcionalidades)
 * [Tecnologias](#tecnologias)
 * [Autor](#autor)
 * [Licença](#license)
@@ -47,17 +46,11 @@ Este é um projeto totalmente grátis!
 
 --------------------------------------------------------------------------------------
 
-<h3 id="funcionalidades">:sparkles: Funcionalidades</h3>
-
-- [X] Realizar a listagem de imagens.
-
---------------------------------------------------------------------------------------
-
 <h3 id="tecnologias">:rocket: Tecnologias</h3>
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Bootstrap](https://getbootstrap.com/)
+- [Bootstrap 5.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 --------------------------------------------------------------------------------------
 
